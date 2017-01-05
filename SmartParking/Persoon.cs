@@ -11,9 +11,7 @@ namespace SmartParking
         // fields
         private string voorNaam;
         private string achterNaam;
-        private string kenteken;
         private bool specialeBehoeftes;
-       // InlogGevens p = new InlogGevens(gebruikersnaam, wachtwoord);
 
         // propterties
         public string VoorNaam
@@ -41,20 +39,7 @@ namespace SmartParking
                 achterNaam = value;
             }
         }
-
-        public string Kenteken
-        {
-            get
-            {
-                return kenteken;
-            }
-
-            private set
-            {
-                kenteken = value;
-            }
-        }
-
+        
         public bool SpecialeBehoeftes
         {
             get
@@ -66,10 +51,17 @@ namespace SmartParking
             {
                 specialeBehoeftes = value;
             }
+        }
 
             // constructors 
-
-            // methods
+        public Persoon(string voorNaam, string achterNaam, bool specialeBehoeftes)
+        {
+            this.voorNaam = voorNaam;
+            this.achterNaam = achterNaam;
+            this.specialeBehoeftes = specialeBehoeftes;
         }
+
+        // methods
+
     }
-}
+ }
