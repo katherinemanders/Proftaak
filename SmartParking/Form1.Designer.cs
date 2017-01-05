@@ -40,9 +40,10 @@
             // 
             // btnParkeerplaats
             // 
-            this.btnParkeerplaats.Location = new System.Drawing.Point(32, 64);
+            this.btnParkeerplaats.Location = new System.Drawing.Point(24, 52);
+            this.btnParkeerplaats.Margin = new System.Windows.Forms.Padding(2);
             this.btnParkeerplaats.Name = "btnParkeerplaats";
-            this.btnParkeerplaats.Size = new System.Drawing.Size(113, 60);
+            this.btnParkeerplaats.Size = new System.Drawing.Size(85, 49);
             this.btnParkeerplaats.TabIndex = 0;
             this.btnParkeerplaats.Text = "Parkeerplaats";
             this.btnParkeerplaats.UseVisualStyleBackColor = true;
@@ -50,9 +51,10 @@
             // 
             // pictureBoxParkeerplaats
             // 
-            this.pictureBoxParkeerplaats.Location = new System.Drawing.Point(283, 64);
+            this.pictureBoxParkeerplaats.Location = new System.Drawing.Point(212, 52);
+            this.pictureBoxParkeerplaats.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxParkeerplaats.Name = "pictureBoxParkeerplaats";
-            this.pictureBoxParkeerplaats.Size = new System.Drawing.Size(400, 300);
+            this.pictureBoxParkeerplaats.Size = new System.Drawing.Size(300, 244);
             this.pictureBoxParkeerplaats.TabIndex = 1;
             this.pictureBoxParkeerplaats.TabStop = false;
             this.pictureBoxParkeerplaats.Visible = false;
@@ -60,51 +62,56 @@
             // 
             // btnInloggen
             // 
-            this.btnInloggen.Location = new System.Drawing.Point(32, 228);
+            this.btnInloggen.Location = new System.Drawing.Point(25, 199);
+            this.btnInloggen.Margin = new System.Windows.Forms.Padding(2);
             this.btnInloggen.Name = "btnInloggen";
-            this.btnInloggen.Size = new System.Drawing.Size(113, 56);
+            this.btnInloggen.Size = new System.Drawing.Size(85, 46);
             this.btnInloggen.TabIndex = 2;
             this.btnInloggen.Text = "Log in";
             this.btnInloggen.UseVisualStyleBackColor = true;
             // 
             // tbUsername
             // 
-            this.tbUsername.Location = new System.Drawing.Point(126, 160);
+            this.tbUsername.Location = new System.Drawing.Point(94, 130);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(125, 22);
+            this.tbUsername.Size = new System.Drawing.Size(95, 20);
             this.tbUsername.TabIndex = 3;
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(126, 188);
+            this.tbPassword.Location = new System.Drawing.Point(94, 153);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(125, 22);
+            this.tbPassword.Size = new System.Drawing.Size(95, 20);
             this.tbPassword.TabIndex = 4;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(29, 165);
+            this.lblUsername.Location = new System.Drawing.Point(22, 134);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(73, 17);
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 5;
             this.lblUsername.Text = "Username";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(29, 191);
+            this.lblPassword.Location = new System.Drawing.Point(22, 155);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(69, 17);
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 6;
             this.lblPassword.Text = "Password";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(731, 427);
+            this.ClientSize = new System.Drawing.Size(548, 347);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.tbPassword);
@@ -112,8 +119,10 @@
             this.Controls.Add(this.btnInloggen);
             this.Controls.Add(this.pictureBoxParkeerplaats);
             this.Controls.Add(this.btnParkeerplaats);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParkeerplaats)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

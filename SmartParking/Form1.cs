@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,11 @@ namespace SmartParking
 {
     public partial class Form1 : Form
     {
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Katherine Manders\Desktop\SmartParking\SmartParking\Database1.mdf';Integrated Security = True");
         public Form1()
         {
             InitializeComponent();
-        }
+          }
 
         private void btnParkeerplaats_Click(object sender, EventArgs e)
         {
@@ -25,6 +27,10 @@ namespace SmartParking
             } else {
                 pictureBoxParkeerplaats.Visible = false;
             }
+
+            sqlCon.Open();
+            Console.WriteLine("hoi");
+            sqlCon.Close();
         }
 
         private void pictureBoxParkeerplaats_Paint(object sender, PaintEventArgs e)
@@ -55,6 +61,11 @@ namespace SmartParking
             //g.FillEllipse(green, 246, 54, 10, 10);
             //g.FillEllipse(green, 147, 140, 10, 10);
             //g.FillEllipse(green, 246, 140, 10, 10);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

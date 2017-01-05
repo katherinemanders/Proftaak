@@ -13,7 +13,7 @@ namespace SmartParking
         private string achterNaam;
         private string kenteken;
         private bool specialeBehoeftes;
-        InlogGevens p = new InlogGevens(gebruikersnaam, wachtwoord);
+       // InlogGevens p = new InlogGevens(gebruikersnaam, wachtwoord);
 
         // propterties
         public string VoorNaam
