@@ -13,18 +13,30 @@ namespace SmartParking
 {
     public partial class Form1 : Form
     {
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename = 'C:\Users\Katherine Manders\Desktop\SmartParking\SmartParking\Database1.mdf';Integrated Security = True");
+        private SerialMessenger serialMessenger;
+        private Timer readMessageTimer;
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Katherine Manders\Downloads\SmartParking Versie 5\SmartParking Versie 5\SmartParking\Database1.mdf';Integrated Security=True");
+        InlogGevens Inlog;
+
         public Form1()
         {
             InitializeComponent();
-          }
+            MessageBuilder messageBuilder = new MessageBuilder('#', '%');
+            serialMessenger = new SerialMessenger("COM5", 115200, messageBuilder);
+
+            readMessageTimer = new Timer();
+            readMessageTimer.Interval = 10;
+            readMessageTimer.Tick += new EventHandler(ReadMessageTimer_Tick);
+        }
 
         private void btnParkeerplaats_Click(object sender, EventArgs e)
         {
             if (pictureBoxParkeerplaats.Visible == false)
             {
                 pictureBoxParkeerplaats.Visible = true;
-            } else {
+            }
+            else
+            {
                 pictureBoxParkeerplaats.Visible = false;
             }
 
@@ -65,6 +77,111 @@ namespace SmartParking
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //for (int i = 0; i < ; i++)
+            //{
+
+            //}
+        }
+
+        private void OntvangenBericht(string message)
+        {
+            if (message.StartsWith("NFC:………"))
+            {
+                MessageBox.Show("Student/ Medewerker");
+            }
+            else if (message.StartsWith("BUSY:…"))
+            {
+                MessageBox.Show("Parkeerplaats bezet");
+            }
+            else if (message.StartsWith("FREE:…"))
+            {
+                MessageBox.Show("Parkeerplaats vrijgekomen");
+            }
+        }
+        private void R1(object sender, EventArgs e)
+        {
+            serialMessenger.SendMessage("ACCES_R1");
+        }
+
+        private void R2(object sender, EventArgs e)
+        {
+            serialMessenger.SendMessage("ACCES_R2");
+        }
+
+        private void BUSY(object sender, EventArgs e)
+        {
+            serialMessenger.SendMessage("NO_ACCES");
+        }
+
+        private void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            disconnect();
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                serialMessenger.Connect();
+                readMessageTimer.Enabled = true;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+
+        private void disconnect()
+        {
+            try
+            {
+                readMessageTimer.Enabled = false;
+                serialMessenger.Disconnect();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+        }
+        private void ReadMessageTimer_Tick(object sender, EventArgs e)
+        {
+            string[] messages = serialMessenger.ReadMessages();
+            if (messages != null)
+            {
+                foreach (string message in messages)
+                {
+                    OntvangenBericht(message);
+                }
+            }
+        }
+
+        private void btnInloggen_Click(object sender, EventArgs e)
+        {
+            Inlog = new InlogGevens(tbGebruikersnaam.Text.ToString(), tbWachtwoord.Text.ToString());
+            string password = string.Empty;
+            sqlCon.Open();
+
+            SqlCommand sqlcom = new SqlCommand("SELECT Wachtwoord FROM Persoon WHERE Gebruikersnaam = '" + Inlog.Wachtwoord + "'", sqlCon);
+            
+            using (SqlDataReader sqlReader = sqlcom.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    password = sqlReader.GetString(0); //The 0 stands for "the 0'th column", so the first column of the result.
+                                                           // Do somthing with this rows string, for example to put them in to a list
+                    Console.WriteLine("Password: " + password);
+                }
+            }
+
+            sqlCon.Close();
+
+            Console.WriteLine("Password: " + password);
+
+            if (Inlog.Wachtwoord == password)
+            {
+                MessageBox.Show("LOGIN SUCEDED");
+            }
+           
 
         }
     }

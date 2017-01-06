@@ -40,11 +40,18 @@ namespace SmartParking
         }
 
         // constructors
-        public InlogGevens(string gebruikersnaam, string wachtwoord)
+        public InlogGevens(string Gebruikersnaam, string Wachtwoord)
         {
-            this.gebruikersnaam = gebruikersnaam;
-            this.wachtwoord = wachtwoord;
+            this.Gebruikersnaam = Gebruikersnaam;
+            this.Wachtwoord = Wachtwoord;
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+
+
 
         //methods
 
