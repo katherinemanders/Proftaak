@@ -40,9 +40,6 @@ namespace SmartParking
                 pictureBoxParkeerplaats.Visible = false;
             }
 
-            sqlCon.Open();
-            Console.WriteLine("hoi");
-            sqlCon.Close();
         }
 
         private void pictureBoxParkeerplaats_Paint(object sender, PaintEventArgs e)
@@ -161,7 +158,7 @@ namespace SmartParking
             string password = string.Empty;
             sqlCon.Open();
 
-            SqlCommand sqlcom = new SqlCommand("SELECT Wachtwoord FROM Persoon WHERE Gebruikersnaam = '" + Inlog.Wachtwoord + "'", sqlCon);
+            SqlCommand sqlcom = new SqlCommand("SELECT Wachtwoord FROM Persoon WHERE Gebruikersnaam = '" + Inlog.Gebruikersnaam + "'", sqlCon);
             
             using (SqlDataReader sqlReader = sqlcom.ExecuteReader())
             {
@@ -179,7 +176,12 @@ namespace SmartParking
 
             if (Inlog.Wachtwoord == password)
             {
-                MessageBox.Show("LOGIN SUCEDED");
+                var Inlogscherm = new Inlogscherm();
+                Inlogscherm.Show();
+            }
+            else if (Inlog.Wachtwoord != password)
+            {
+                MessageBox.Show("Wachtwoord en of gebruikersnaam onjuist. Probeer opnieuw.");
             }
            
 
