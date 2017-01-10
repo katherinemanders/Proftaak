@@ -13,7 +13,11 @@ namespace SmartParking
 {
     public partial class Inlogscherm : Form
     {
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Katherine Manders\Downloads\SmartParking Versie 5\SmartParking Versie 5\SmartParking\Database1.mdf';Integrated Security=True");
+        // rekening houden met dat de data vanuit de tabel niet geupdate wordt
+        // deze moet ook in de debug folder worden geupdate (dat zal dan dus handmatig moeten gebeuren)
+        // goed in de gaten houden. 
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\Database1.mdf';Integrated Security=True");
+        public string gebruikersnaam;
 
         public Inlogscherm()
         {
@@ -24,11 +28,16 @@ namespace SmartParking
         {
             sqlCon.Open();
 
-           // SqlCommand sqlCom = new SqlCommand("SELECT Voornaam FROM Persoon WHERE " , sqlCon);
-            //SqlDataReader sqlRdr = sqlCom.ExecuteReader();
-            //label zetten op welkom + voornaam
-            lblWelkom.Text = "Welkom ";
+            SqlCommand sqlcom = new SqlCommand("SELECT Voornaam FROM Persoon WHERE Gebruikersnaam = '" + + "'", sqlCon);
 
+            using (SqlDataReader sqlReader = sqlcom.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    lblWelkom.Text = "Welkom " + (sqlReader["Voornaam"].ToString());
+                }
+            }
+            
             sqlCon.Close();
 
         }

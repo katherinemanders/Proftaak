@@ -15,7 +15,7 @@ namespace SmartParking
     {
         private SerialMessenger serialMessenger;
         private Timer readMessageTimer;
-        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Katherine Manders\Downloads\SmartParking Versie 5\SmartParking Versie 5\SmartParking\Database1.mdf';Integrated Security=True");
+        SqlConnection sqlCon = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='|DataDirectory|\Database1.mdf';Integrated Security=True");
         InlogGevens Inlog;
 
         public Form1()
@@ -74,10 +74,7 @@ namespace SmartParking
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //for (int i = 0; i < ; i++)
-            //{
 
-            //}
         }
 
         private void OntvangenBericht(string message)
@@ -178,6 +175,13 @@ namespace SmartParking
             {
                 var Inlogscherm = new Inlogscherm();
                 Inlogscherm.Show();
+                using (Inlogscherm inlogscherm = new Inlogscherm())
+                {
+                    if (inlogscherm.ShowDialog() == DialogResult.OK)
+                    {
+                        Inlog.Gebruikersnaam.ToString();
+                    }
+                }
             }
             else if (Inlog.Wachtwoord != password)
             {
