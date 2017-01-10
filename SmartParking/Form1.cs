@@ -82,6 +82,15 @@ namespace SmartParking
             if (message.StartsWith("NFC:………"))
             {
                 MessageBox.Show("Student/ Medewerker");
+                //SELECT ParkeerOmschrijving
+                //FROM ParkeerPlaats
+                //inner join ParkeerVoorkeur
+                //on ParkeerPlaats.Parkeerplaats_ID = ParkeerVoorkeur.Parkeerplaats_ID
+                //inner join NFC
+                //on NFC.Persoon_ID = ParkeerVoorkeur.Persoon_ID
+                //WHERE ParkeerVoorkeur.Persoon_ID = (select NFC.Persoon_ID
+                //from NFC
+                //where NFCTag like '%#NFC:693196147%%')
             }
             else if (message.StartsWith("BUSY:…"))
             {
